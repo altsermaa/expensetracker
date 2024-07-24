@@ -6,6 +6,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import JavaEye from '../../public/JavaEye'
 import JavaArrow from '../../public/JavaArrow'
 import JavaPlus from '../../public/JavaPlus'
+import Amount from './Amount'
+import Filter from './Filter'
+import Details from './Details'
+import Card from './Card'
 
 const categories = [
     "Food & Drinks", 
@@ -71,9 +75,14 @@ function Body() {
                             <p className='text-sm'>Add Category</p>
                         </div>
                     </div>
+                    <Amount />
                 </div>
-                <div>
-
+                <div className="ml-6 mr-28 mt-12 mb-14 flex flex-col gap-6">
+                    <Filter />
+                    <Details />
+                    <h1 className='mb-4 font-bold'>Today</h1>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                
                 </div>
             </div>
         </div>
