@@ -2,6 +2,7 @@ import React from 'react'
 import JavaLogo from '../../public/JavaLogo'
 import { Input } from '@/components/ui/input'
 import { Button } from "@/components/ui/button"
+import Link from 'next/link';
 
 
 function page() {
@@ -24,7 +25,9 @@ function page() {
           </div>
           <div>
               <span>Don't have account?</span>
-              <span className='text-[#0065fd] px-3'>Sign up</span>
+              <Link href={`/createAccount`}>
+                <span className='text-[#0065fd] px-3'>Sign up</span>
+              </Link>
           </div>
         </div>
       </div>
