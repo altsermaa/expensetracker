@@ -1,7 +1,7 @@
 import React from 'react'
-import JavaLogo from '../../public/JavaLogo'
 import { Input } from '@/components/ui/input'
 import { Button } from "@/components/ui/button"
+import JavaLogo from '../../../public/JavaLogo'
 
 
 function page() {
@@ -14,17 +14,19 @@ function page() {
               <h1 className='font-bold'>Geld</h1>
           </div>
           <div>
-            <h1 className='font-bold text-center'>Welcome Back</h1>
-            <h4 className='text-center'>Welcome back, Please enter your details</h4>
+            <h1 className='font-bold text-center'>Create Geld account</h1>
+            <h4 className='text-center'>Sign up below to create your Wallet account</h4>
           </div>
           <div className='flex flex-col gap-4'>
+            <Input type='text' placeholder='Name'/>
             <Input type='text' placeholder='Email'/>
             <Input type='text' placeholder='Password'/>
-            <Button variant="outline">Log in</Button>
+            <Input type='text' placeholder='Re-password'/>
+            <Button variant="outline">Sign up</Button>
           </div>
           <div>
-              <span>Don't have account?</span>
-              <span className='text-[#0065fd] px-3'>Sign up</span>
+              <span>Already have account?</span>
+              <span className='text-[#0065fd] px-3'>Log in</span>
           </div>
         </div>
       </div>
