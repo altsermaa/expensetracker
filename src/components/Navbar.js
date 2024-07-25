@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 function Navbar() {
   return (
-    <div className='flex justify-between w-[1440px] items-center px-24 py-4'>
+    <div className='flex justify-between w-[1440px] items-center px-24 py-4 m-auto'>
       <div className='flex items-center gap-6'>
         <JavaLogo />
         <p>Dashboard</p>

@@ -8,9 +8,9 @@ function Card({item, amount}) {
 
     const renderIcon = () => {
         if (item === "Food & Drinks") {
-            return <JavaHome />;
-        } else {
             return <JavaFood />;
+        } else {
+            return <JavaHome />;
         }
     };
 
@@ -18,10 +18,12 @@ function Card({item, amount}) {
 
   return (
     <div className='flex w-[894px] justify-between bg-white px-6 py-3 rounded-md'>
-        <div className='flex items-center gap-4'>
+        <div className='flex gap-4 items-center'>
             <Checkbox />
             {renderIcon()}
             <span>{item}</span>
+        </div>
+        <div>
             <span className={amountColor}>{amount}</span>
         </div>
     </div>

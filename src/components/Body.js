@@ -29,8 +29,8 @@ const categories = [
 function Body() {
     return (
         <div className='bg-[#f2f4f6] w-full h-full'>
-            <div className='w-[1440px] px-24 pt-4 pb-8 flex gap-6'>
-                <div className='flex flex-col px-4 py-6 gap-6 bg-white'>
+            <div className='w-[1440px] px-24 pt-4 pb-8 flex gap-6 m-auto'>
+                <div className='flex flex-col px-4 py-6 gap-6 bg-white w-[282px]'>
                     <b>Records</b>
                     <Button className="w-full h-fit">
                         + Add
@@ -82,7 +82,16 @@ function Body() {
                     <Details />
                     <h1 className='mb-4 font-bold'>Today</h1>
                     <Card item = "Food & Drinks" amount={-3000}/>
-                
+                    <Card item = "Lending & Renting" amount={1000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <h1 className='mb-4 font-bold'>Yesterday</h1>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
+                    <Card item = "Food & Drinks" amount={-3000}/>
                 </div>
             </div>
         </div>
