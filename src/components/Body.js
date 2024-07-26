@@ -10,6 +10,7 @@ import Amount from './Amount'
 import Filter from './Filter'
 import Details from './Details'
 import Card from './Card'
+import AddRecord from './AddRecord'
 
 const categories = [
     "Food & Drinks", 
@@ -32,9 +33,7 @@ function Body() {
             <div className='w-[1440px] px-24 pt-4 pb-8 flex gap-6 m-auto'>
                 <div className='flex flex-col px-4 py-6 gap-6 bg-white w-[282px]'>
                     <b>Records</b>
-                    <Button className="w-full h-fit">
-                        + Add
-                    </Button>
+                    <AddRecord />
                     <Input type='text' placeholder='Search' />
                     <div>
                         <h1 className='mb-4 font-bold'>Types</h1>
