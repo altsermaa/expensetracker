@@ -1,46 +1,55 @@
 "use client"
 
+import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose,} from "@/components/ui/dialog"
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-    DialogClose,
-  } from "@/components/ui/dialog"
-  import { Button } from './ui/button'
-  import {
     Card,
     CardContent,
     CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
-  import { Input } from "@/components/ui/input"
-  import { Label } from "@/components/ui/label"
-  import {
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
-  } from "@/components/ui/tabs"
-  import {
+} from "@/components/ui/tabs"
+import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-  } from "@/components/ui/select"
-  import { Textarea } from "@/components/ui/textarea"
-  import { Calendar } from "@/components/ui/calendar"
-  import * as React from "react"
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import * as React from "react"
+import { format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+ 
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import TimePicker from 'react-time-picker'
+import { useState } from "react"
+import AddCategory from "./AddCategory"
 
 
 function AddRecord() {
-    const [date, setDate] = React.useState(new Date())
+    const [date, setDate] = useState(new Date())
+    const [time, setTime] = useState('10:00')
 
+    const handleTime = (value) => {
+        setTime(value);
+    }
+        
   return (
     <div>
        <Dialog>
@@ -71,47 +80,52 @@ function AddRecord() {
                                         <Label htmlFor="message">Category</Label>
                                         <Select>
                                             <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Choose"/>
+                                                <SelectValue placeholder="Find or choose category"/>
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="light">Light</SelectItem>
-                                                <SelectItem value="dark">Dark</SelectItem>
-                                                <SelectItem value="system">System</SelectItem>
+                                                <AddCategory />
                                             </SelectContent>
                                         </Select>
                                     </div>
                                     <div className='flex gap-3'>
                                         <div className='flex-1'>
-                                        <Select>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Choose"/>
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="calendar">
+                                            <Label htmlFor="time">Date</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <Button
+                                                    variant={"outline"}
+                                                    className={cn(
+                                                        "w-fit justify-start text-left font-normal",
+                                                        !date && "text-muted-foreground"
+                                                    )}
+                                                    >
+                                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                                                    </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0">
                                                     <Calendar
-                                                        mode="single"
-                                                        selected={date}
-                                                        onSelect={setDate}
-                                                        className="rounded-md border"
+                                                    mode="single"
+                                                    selected={date}
+                                                    onSelect={setDate}
+                                                    initialFocus
                                                     />
-                                                </SelectItem>
-                                            </SelectContent>
-                                        </Select>
+                                                </PopoverContent>
+                                            </Popover>
                                         </div>
                                         <div className='flex-1'>
-                                            <Select>
-                                                <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder="Choose"/>
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="light">Light</SelectItem>
-                                                </SelectContent>
-                                            </Select>
+                                            <Label htmlFor="time">Time</Label>
+                                            <TimePicker
+                                                onChange={handleTime}
+                                                value={time}
+                                                disableClock
+                                                className="w-full"
+                                            />
                                         </div>
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button>Add Record</Button>
+                                    <Button className="w-full bg-[#0066fe]">Add Record</Button>
                                 </CardFooter>
                                 </Card>
                             </TabsContent>
@@ -139,14 +153,14 @@ function AddRecord() {
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button>Add Record</Button>
+                                    <Button className="w-full bg-[#0066fe]">Add Record</Button>
                                 </CardFooter>
                                 </Card>
                             </TabsContent>
                         </Tabs>
                     </div>
-                    <div className='flex-1'>
-                        <div className='mb-6'>
+                    <div className='flex-1 flex flex-col h-full'>
+                        <div className='flex-none mb-6'>
                             <Label htmlFor="message">Payee</Label>
                             <Select>
                                 <SelectTrigger className="w-full">
@@ -159,7 +173,7 @@ function AddRecord() {
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div className="grid w-full gap-1.5">
+                        <div className="flex flex-col flex-1 w-full gap-1.5">
                             <Label htmlFor="message">Notes</Label>
                             <Textarea placeholder="Write here." id="message" />
                         </div>
