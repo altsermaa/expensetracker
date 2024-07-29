@@ -44,11 +44,6 @@ import AddCategory from "./AddCategory"
 
 function AddRecord() {
     const [date, setDate] = useState(new Date())
-    const [time, setTime] = useState('10:00')
-
-    const handleTime = (value) => {
-        setTime(value);
-    }
         
   return (
     <div>
@@ -115,12 +110,7 @@ function AddRecord() {
                                         </div>
                                         <div className='flex-1'>
                                             <Label htmlFor="time">Time</Label>
-                                            <TimePicker
-                                                onChange={handleTime}
-                                                value={time}
-                                                disableClock
-                                                className="w-full"
-                                            />
+                                            <Input type="time" />
                                         </div>
                                     </div>
                                 </CardContent>
