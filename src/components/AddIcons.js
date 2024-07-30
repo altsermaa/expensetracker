@@ -20,17 +20,25 @@ function AddIcons() {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedName, setSelectedName] = useState(null);
 
-  const icons = [
-    { icon: <JavaHome />, value: 'home' },
-    { icon: <JavaHouseline />, value: 'houseline' },
-    { icon: <JavaExcel />, value: 'excel' },
-    { icon: <JavaIdentify />, value: 'identify' },
-    { icon: <JavaImage />, value: 'image' },
-    { icon: <JavaLadder />, value: 'ladder' },
-    { icon: <JavaMagnify />, value: 'magnify' },
-    { icon: <JavaNote />, value: 'note' },
-    { icon: <JavaSquare />, value: 'square' },
+  const [bgColor, setBgColor] = useState('black');
+
+
+  const items = [
+    { icon: JavaHome, value: 'home' },
+    { icon: JavaHouseline, value: 'houseline' },
+    { icon: JavaExcel, value: 'excel' },
+    { icon: JavaIdentify, value: 'identify' },
+    { icon: JavaImage, value: 'image' },
+    { icon: JavaLadder, value: 'ladder' },
+    { icon: JavaMagnify, value: 'magnify' },
+    { icon: JavaNote, value: 'note' },
+    { icon: JavaSquare, value: 'square' },
   ];
+
+  const colors = [
+    "#0166FF",
+    "#01B3FF",
+  ]
 
   const names = ['Rent', 'Food', 'House', 'Drinks', 'blaaaa']
 
@@ -47,18 +55,33 @@ function AddIcons() {
           </SelectTrigger>
           <SelectContent>
             <div className='grid grid-cols-5 border-b-2 gap-2'>
-              {icons.map((icon) => (
-                <SelectItem key={icon.value} value={icon.value} >
-                  {icon.icon}
-                </SelectItem>
-              ))}
+              {items.map((item, index) => {
+                const Icon = item.icon
+
+                return (
+                  <SelectItem
+                    className={`w-fit h-fit`}
+                    key={index}
+                    value={item}
+                  >
+                    <div className='self-center' >
+                      <Icon color={bgColor} />
+                    </div>
+                  </SelectItem>
+                )
+              })}
             </div>
-            <div className='flex gap-5 justify-start'>
-              <JavaBlue />
-              <JavaGreen />
-              <JavaOrange />
-              <JavaRed />
-              <JavaYellow />
+
+            <div className='flex gap-5 p-6'>
+              {colors.map((item) => {
+                return (
+                  <div
+                    onClick={() => { setBgColor(item) }}
+                    className='h-6 w-6 border rounded-full cursor-pointer'
+                    style={{ backgroundColor: item }}
+                  ></div>
+                )
+              })}
             </div>
           </SelectContent>
         </Select>
@@ -82,9 +105,9 @@ function AddIcons() {
       <div>
         <Button variant="outline" onClick={handleSubmit} classname="w-full bg-lime-600">Add</Button>
       </div>
-      
 
-      </div>
+
+    </div>
   );
 }
 
