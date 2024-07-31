@@ -43,6 +43,16 @@ function Body() {
         getData();
     }, [])
 
+    const createAccount = async () => {
+        const newAccount = {
+            title,
+            amount,
+        };
+
+        const response = await axios.post("http://localhost:4000/accounts", newAccount);
+        setAccounts([...accounts, response.data])
+    }
+
 
     return (
         <div className='bg-[#f2f4f6] w-full h-full'>
@@ -107,6 +117,24 @@ function Body() {
                             </li>
                         ))}
                     </ul>
+                    <div className="flex gap-4 p-6">
+                        <input 
+                            className="border"
+                            value={title}
+                            onChange={(event) => {
+                                setTitle(event.target.value)
+                            }}
+                        />
+                         <input 
+                            className="border"
+                            value={amount}
+                            onChange={(event) => {
+                                setAmount(event.target.value)
+                            }}
+                        />
+
+                        <button onClick={createAccount}>Create</button>
+                    </div>
 
                     {/* <Card item = "Food & Drinks" amount={-3000}/>
                     <Card item = "Food & Drinks" amount={-3000}/>
