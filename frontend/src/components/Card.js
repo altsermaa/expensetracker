@@ -17,7 +17,7 @@ function Card({item, amount}) {
     const amountColor = amount > 0 ? "text-green-500" : "text-red-500";
 
   return (
-    <div className='flex w-[894px] justify-between bg-white px-6 py-3 rounded-md'>
+    <div className='flex w-[894px] justify-between bg-white px-6 py-3 rounded-md mb-3'>
         <div className='flex gap-4 items-center'>
             <Checkbox />
             {renderIcon()}

@@ -2,15 +2,27 @@ import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import JavaHome from '../../public/categoryIcon/JavaHome';
 import AddIcons from './AddIcons';
+import { SelectItem } from './ui/select';
 
 function AddCategory() {
     const [openDialog, setOpenDialog] = useState(false);
+    const [title, setTitle] = useState(""); 
 
     const handleOpenDialog = () => {
       setOpenDialog(true);
     };
 
-  const categories = [
+    // const createAccount = async () => {
+    //     const newAccount = {
+    //         title,
+    //         amount,
+    //     };
+
+    //     const response = await axios.post("http://localhost:4000/accounts", newAccount);
+    //     setAccounts([...accounts, response.data])
+    // }
+
+  const titles = [
     { icon: <JavaHome />, title: "Add Category 1" },
     { icon: <JavaHome />, title: "Add Category 2" },
     { icon: <JavaHome />, title: "Add Category 3" },
@@ -28,14 +40,16 @@ function AddCategory() {
       </div>
       
       <div className='flex flex-col'>
-        {categories.map((category, index) => (
-          <div
+        {titles.map((title, index) => (
+          <SelectItem 
             key={index}
             className='flex items-center gap-2 cursor-pointer'
-          >
-            {category.icon}
-            <span>{category.title}</span>
-          </div>
+            value={title.title}
+            onClick={() => setTitle(title.title)}
+            >
+              {title.icon}
+              <span>{title.title}</span>
+          </SelectItem>
         ))}
       </div>
 

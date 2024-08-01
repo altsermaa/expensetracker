@@ -37,21 +37,29 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import TimePicker from 'react-time-picker'
 import { useState } from "react"
 import AddCategory from "./AddCategory"
+import axios from "axios"
 
 
 function AddRecord() {
     const [date, setDate] = useState(new Date())
+    const [accounts, setAccounts] = useState([]);
+    const [amount, setAmount] = useState("");
+    const [title, setTitle] = useState(""); 
+
+    const createAccount = async () => {
+        const newAccount = { title, amount };
+
+        const response = await axios.post("http://localhost:4000/accounts", newAccount);
+        setAccounts([...accounts, response.data])
+    }
         
   return (
     <div>
        <Dialog>
             <DialogTrigger asChild>
-                <Button className="w-full h-fit">
-                    + Add
-                </Button>
+                <Button className="w-full h-fit">+ Add</Button>
             </DialogTrigger>
             <DialogContent className="p-6 bg-white rounded shadow-lg">
                 <h2 className='text-lg font-bold mb-4'>Add Record</h2>
@@ -69,7 +77,16 @@ function AddRecord() {
                                 </CardHeader>
                                 <CardContent className="space-y-2 flex flex-col gap-5">
                                     <div className="space-y-1">
-                                        <Input type="number" placeholder="Amount" defaultValue="000.00" />
+                                        <Input 
+                                            type="number" 
+                                            placeholder="Amount" 
+                                            defaultValue="000.00" 
+                                            className="border"
+                                            value={amount}
+                                            onChange={(event) => {
+                                                setAmount(event.target.value)
+                                            }}
+                                            />
                                     </div>
                                     <div className="space-y-1">
                                         <Label htmlFor="message">Category</Label>
@@ -115,7 +132,7 @@ function AddRecord() {
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button className="w-full bg-[#0066fe]">Add Record</Button>
+                                    <Button onClick={createAccount} className="w-full bg-[#0066fe]">Add Record</Button>
                                 </CardFooter>
                                 </Card>
                             </TabsContent>
@@ -143,7 +160,7 @@ function AddRecord() {
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button className="w-full bg-[#0066fe]">Add Record</Button>
+                                    <Button className="w-full bg-[#0066fe]" onClick={createAccount}>Add Record</Button>
                                 </CardFooter>
                                 </Card>
                             </TabsContent>

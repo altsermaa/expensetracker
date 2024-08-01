@@ -112,9 +112,10 @@ function Body() {
                     <h1 className='mb-4 font-bold'>Yesterday</h1>
                     <ul>
                         {accounts.map((accounts, index) => (
-                        <li key={accounts.title + index}>
-                            {accounts.title} - {accounts.amount}
-                            </li>
+                            <Card item = {accounts.title} amount={accounts.amount}/>
+                        // <li key={accounts.title + index}>
+                        //     {accounts.title} - {accounts.amount}
+                        //     </li>
                         ))}
                     </ul>
                     <div className="flex gap-4 p-6">
