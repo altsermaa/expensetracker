@@ -12,7 +12,8 @@ import Details from './Details'
 import Card from './Card'
 import AddRecord from './AddRecord'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { TitleContext } from "./Context"
 
 const categories = [
     "Food & Drinks", 
@@ -30,7 +31,7 @@ const categories = [
 
 function Body() {
     const [accounts, setAccounts] = useState([]);
-    const [title, setTitle] = useState(""); 
+    const [title, setTitle] = useContext(TitleContext)
     const [amount, setAmount] = useState("");
 
 
@@ -112,7 +113,7 @@ function Body() {
                     <h1 className='mb-4 font-bold'>Yesterday</h1>
                     <ul>
                         {accounts.map((accounts, index) => (
-                            <Card item = {accounts.title} amount={accounts.amount}/>
+                            <Card key={index} item = {accounts.title} amount={accounts.amount}/>
                         // <li key={accounts.title + index}>
                         //     {accounts.title} - {accounts.amount}
                         //     </li>
@@ -137,17 +138,9 @@ function Body() {
                         <button onClick={createAccount}>Create</button>
                     </div>
 
-                    {/* <Card item = "Food & Drinks" amount={-3000}/>
-                    <Card item = "Food & Drinks" amount={-3000}/>
-                    <Card item = "Food & Drinks" amount={-3000}/>
-                    <Card item = "Food & Drinks" amount={-3000}/>
-                    <Card item = "Food & Drinks" amount={-3000}/>
-                    <Card item = "Food & Drinks" amount={-3000}/>
-                    <Card item = "Food & Drinks" amount={-3000}/> */}
-                </div>
+                    </div>
             </div>
         </div>
-
     )
 }
 

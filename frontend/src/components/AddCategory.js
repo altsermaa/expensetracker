@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import JavaHome from '../../public/categoryIcon/JavaHome';
 import AddIcons from './AddIcons';
 import { SelectItem } from './ui/select';
+import { TitleContext } from './Context';
 
 function AddCategory() {
     const [openDialog, setOpenDialog] = useState(false);
-    const [title, setTitle] = useState(""); 
+    const [title, setTitle] = useContext(TitleContext)
+    console.log(title)
 
     const handleOpenDialog = () => {
       setOpenDialog(true);
@@ -45,7 +47,7 @@ function AddCategory() {
             key={index}
             className='flex items-center gap-2 cursor-pointer'
             value={title.title}
-            onClick={() => setTitle(title.title)}
+            onChange={(event) => setTitle({...title, title: event.target.value})}
             >
               {title.icon}
               <span>{title.title}</span>
